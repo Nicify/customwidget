@@ -22,8 +22,6 @@ func ImageButton(texture *g.Texture, width float32, height float32, onClick func
 func ImageButtonV(texture *g.Texture, width float32, height float32, palette theme.Palette, onClick func()) g.Layout {
 	return g.Layout{
 		g.Custom(func() {
-			imgui.PushStyleVarFloat(imgui.StyleVarFrameRounding, 0)
-			imgui.PushStyleVarVec2(imgui.StyleVarFramePadding, imgui.Vec2{X: 0, Y: 0})
 			imgui.PushStyleColor(imgui.StyleColorButton, g.ToVec4Color(palette.Tint))
 			imgui.PushStyleColor(imgui.StyleColorButtonHovered, g.ToVec4Color(palette.Hover))
 			imgui.PushStyleColor(imgui.StyleColorButtonActive, g.ToVec4Color(palette.Active))
@@ -31,7 +29,6 @@ func ImageButtonV(texture *g.Texture, width float32, height float32, palette the
 		ImageButton(texture, width, height, onClick),
 		g.Custom(func() {
 			imgui.PopStyleColorV(3)
-			imgui.PopStyleVarV(2)
 		}),
 	}
 }
