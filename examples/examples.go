@@ -21,9 +21,9 @@ var (
 )
 
 func loop() {
-	useLayoutFlat := theme.UseLayoutFlat()
-	defer useLayoutFlat.Pop()
-	useLayoutFlat.Push()
+	useLayoutFluent := theme.UseLayoutFluent()
+	defer useLayoutFluent.Pop()
+	useLayoutFluent.Push()
 	g.SingleWindow("Examples", g.Layout{
 		g.Spacing(),
 		g.Label("WithHiDPIFont"),
@@ -67,8 +67,8 @@ func init() {
 func main() {
 	w := g.NewMasterWindow("Examples", 320, 480, 0, loadFont)
 	w.SetBgColor(color.RGBA{255, 255, 255, 255})
-	imgui.StyleColorsLight()
+	// imgui.StyleColorsDark()
 	style := imgui.CurrentStyle()
-	theme.SetThemeLight(&style)
+	theme.SetThemeFluentDark(&style)
 	w.Main(loop)
 }
