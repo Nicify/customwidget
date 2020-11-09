@@ -50,12 +50,14 @@ func WithHiDPIFont(hDPIFont imgui.Font, lDPIFont imgui.Font, layout g.Layout) g.
 }
 
 func RadioButton(items []string, selected *int32, onChange func()) g.Layout {
+	useLayoutFlat := theme.UseLayoutFlat()
 	useStyleButtonGhost := theme.UseStyleButtonGhost()
 	return g.Layout{
 		g.Custom(func() {
 			length := len(items)
 			for idx, item := range items {
 				currentSelected := int32(idx) == *selected
+				useLayoutFlat.Push()
 				if !currentSelected {
 					useStyleButtonGhost.Push()
 				}
@@ -71,6 +73,7 @@ func RadioButton(items []string, selected *int32, onChange func()) g.Layout {
 				if !currentSelected {
 					useStyleButtonGhost.Pop()
 				}
+				useLayoutFlat.Pop()
 			}
 		}),
 	}
