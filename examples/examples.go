@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"image/color"
+	"runtime"
 
 	g "github.com/AllenDang/giu"
 	"github.com/AllenDang/giu/imgui"
@@ -12,17 +13,17 @@ import (
 )
 
 var (
-	fontDefault  imgui.Font
-	fontConsola  imgui.Font
+	fontDefault imgui.Font
+	fontConsola imgui.Font
+
 	items        []string
 	itemSelected int32
 )
 
-func oncClick() {
-	fmt.Println("Clicked")
-}
-
 func loop() {
+	useLayoutFlat := theme.UseLayoutFlat()
+	defer useLayoutFlat.Pop()
+	useLayoutFlat.Push()
 	g.SingleWindow("Examples", g.Layout{
 		g.Spacing(),
 		g.Label("WithHiDPIFont"),
@@ -36,7 +37,9 @@ func loop() {
 		g.Child("RadioButton", true, 0, 100, 0, g.Layout{
 			g.Line(
 				g.Label("Fruit:"),
-				c.RadioButton(items, &itemSelected, nil),
+				c.RadioButton(items, &itemSelected, func() {
+					fmt.Printf("select %s\n", items[itemSelected])
+				}),
 			),
 		}),
 	})
@@ -56,6 +59,8 @@ func loadFont() {
 }
 
 func init() {
+	runtime.LockOSThread()
+
 	items = []string{"Apple", "Pear", "Orange"}
 }
 
