@@ -24,17 +24,17 @@ func loop() {
 	useLayoutFluent := theme.UseLayoutFluent()
 	defer useLayoutFluent.Pop()
 	useLayoutFluent.Push()
-	g.SingleWindow("Examples", g.Layout{
+	g.SingleWindow("Examples").Layout(g.Layout{
 		g.Spacing(),
 		g.Label("WithHiDPIFont"),
-		g.Child("WithHiDPIFont", true, 0, 100, 0, g.Layout{
+		g.Child("WithHiDPIFont").Border(true).Size(0, 100).Layout(g.Layout{
 			c.WithHiDPIFont(fontConsola, fontDefault, g.Layout{
-				g.LabelWrapped("The quick brown fox jumps over the lazy dog"),
+				g.Label("The quick brown fox jumps over the lazy dog").Wrapped(true),
 			}),
 		}),
 		g.Spacing(),
 		g.Label("RadioButton"),
-		g.Child("RadioButton", true, 0, 100, 0, g.Layout{
+		g.Child("RadioButton").Border(true).Size(0, 100).Layout(g.Layout{
 			g.Line(
 				g.Label("Fruit:"),
 				c.RadioButton(items, &itemSelected, func() {
@@ -70,5 +70,5 @@ func main() {
 	// imgui.StyleColorsDark()
 	style := imgui.CurrentStyle()
 	theme.SetThemeFluentDark(&style)
-	w.Main(loop)
+	w.Run(loop)
 }

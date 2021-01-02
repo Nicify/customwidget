@@ -13,7 +13,7 @@ func ImageButton(texture *g.Texture, width float32, height float32, onClick func
 		g.Custom(func() {
 			imgui.PushStyleVarVec2(imgui.StyleVarFramePadding, imgui.Vec2{X: 0, Y: 0})
 		}),
-		g.ImageButton(texture, width, height, onClick),
+		g.ImageButton(texture).Size(width, height).OnClick(onClick),
 		g.Custom(func() {
 			imgui.PopStyleVar()
 		}),
