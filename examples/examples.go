@@ -24,25 +24,25 @@ func loop() {
 	useLayoutFluent := theme.UseLayoutFluent()
 	defer useLayoutFluent.Pop()
 	useLayoutFluent.Push()
-	g.SingleWindow("Examples").Layout(g.Layout{
+	g.SingleWindow("Examples").Layout(
 		g.Spacing(),
 		g.Label("WithHiDPIFont"),
-		g.Child("WithHiDPIFont").Border(true).Size(0, 100).Layout(g.Layout{
+		g.Child("WithHiDPIFont").Border(true).Size(0, 100).Layout(
 			c.WithHiDPIFont(fontConsola, fontDefault, g.Layout{
 				g.Label("The quick brown fox jumps over the lazy dog").Wrapped(true),
 			}),
-		}),
+		),
 		g.Spacing(),
 		g.Label("RadioButton"),
-		g.Child("RadioButton").Border(true).Size(0, 100).Layout(g.Layout{
+		g.Child("RadioButton").Border(true).Size(0, 100).Layout(
 			g.Line(
 				g.Label("Fruit:"),
 				c.RadioButton(items, &itemSelected, func() {
 					fmt.Printf("select %s\n", items[itemSelected])
 				}),
 			),
-		}),
-	})
+		),
+	)
 }
 
 func loadFont() {
