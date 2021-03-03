@@ -37,7 +37,7 @@ func loop() {
 		g.Child("RadioButton").Border(true).Size(0, 100).Layout(
 			g.Line(
 				g.Label("Fruit:"),
-				c.RadioButton(items, &itemSelected, func() {
+				c.RadioButton(items, &itemSelected).OnChange(func() {
 					fmt.Printf("select %s\n", items[itemSelected])
 				}),
 			),
