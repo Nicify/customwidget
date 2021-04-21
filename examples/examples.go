@@ -6,7 +6,7 @@ import (
 	"runtime"
 
 	g "github.com/AllenDang/giu"
-	"github.com/AllenDang/giu/imgui"
+	"github.com/AllenDang/imgui-go"
 	c "github.com/Nicify/customwidget"
 	theme "github.com/Nicify/theme"
 	"github.com/flopp/go-findfont"
